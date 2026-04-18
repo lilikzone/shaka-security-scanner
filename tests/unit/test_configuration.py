@@ -7,11 +7,11 @@ import tempfile
 import yaml
 from pathlib import Path
 
-from web_pen_test_framework.core.configuration import (
+from shaka_security_scanner.core.configuration import (
     ConfigurationManager,
     ConfigurationError
 )
-from web_pen_test_framework.models import (
+from shaka_security_scanner.models import (
     IntensityLevel,
     TestSuite,
     Payload,

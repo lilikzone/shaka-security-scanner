@@ -5,7 +5,7 @@ Unit tests for RequestThrottler.
 import pytest
 import asyncio
 import time
-from web_pen_test_framework.http.throttler import RequestThrottler, ThrottlerStats
+from shaka_security_scanner.http.throttler import RequestThrottler, ThrottlerStats
 
 
 class TestRequestThrottler:

@@ -5,8 +5,8 @@ Unit tests for Input Validation Scanner.
 import pytest
 from unittest.mock import Mock, AsyncMock
 
-from web_pen_test_framework.scanners.input_validation import InputValidationScanner
-from web_pen_test_framework.models import (
+from shaka_security_scanner.scanners.input_validation import InputValidationScanner
+from shaka_security_scanner.models import (
     Target, Configuration, TestSuite, IntensityLevel, Severity
 )
 

@@ -4,7 +4,7 @@ Unit tests for core data models.
 
 import pytest
 from datetime import datetime, timedelta
-from web_pen_test_framework.models import (
+from shaka_security_scanner.models import (
     Target,
     Configuration,
     Finding,

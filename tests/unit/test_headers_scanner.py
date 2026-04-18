@@ -5,8 +5,8 @@ Unit tests for Headers Scanner.
 import pytest
 from unittest.mock import Mock, AsyncMock
 
-from web_pen_test_framework.scanners.headers import HeadersScanner
-from web_pen_test_framework.models import (
+from shaka_security_scanner.scanners.headers import HeadersScanner
+from shaka_security_scanner.models import (
     Target, Configuration, TestSuite, IntensityLevel, Severity
 )
 

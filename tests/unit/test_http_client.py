@@ -6,8 +6,8 @@ import pytest
 from unittest.mock import AsyncMock, Mock, patch
 import httpx
 
-from web_pen_test_framework.http.client import HTTPClient, HTTPClientError
-from web_pen_test_framework.models import HTTPRequest
+from shaka_security_scanner.http.client import HTTPClient, HTTPClientError
+from shaka_security_scanner.models import HTTPRequest
 
 
 class TestHTTPClient:

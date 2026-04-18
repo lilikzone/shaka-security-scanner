@@ -6,8 +6,8 @@ import pytest
 from unittest.mock import Mock, patch, AsyncMock
 from datetime import datetime, timedelta
 
-from web_pen_test_framework.scanners.ssl_tls import SSLTLSScanner
-from web_pen_test_framework.models import (
+from shaka_security_scanner.scanners.ssl_tls import SSLTLSScanner
+from shaka_security_scanner.models import (
     Target, Configuration, TestSuite, IntensityLevel, Severity
 )
 

@@ -6,8 +6,8 @@ import pytest
 from unittest.mock import Mock, patch, AsyncMock
 from datetime import datetime
 
-from web_pen_test_framework.ai import BedrockAIClient, SecurityAnalysisEngine, EnhancedFinding, AIAnalysisResult
-from web_pen_test_framework.models import Finding, Target, Configuration, TestSuite, IntensityLevel, Severity, VulnerabilityCategory
+from shaka_security_scanner.ai import BedrockAIClient, SecurityAnalysisEngine, EnhancedFinding, AIAnalysisResult
+from shaka_security_scanner.models import Finding, Target, Configuration, TestSuite, IntensityLevel, Severity, VulnerabilityCategory
 
 
 class TestBedrockAIClient:
@@ -15,12 +15,12 @@ class TestBedrockAIClient:
     
     def test_client_initialization_no_boto3(self):
         """Test client initialization when boto3 is not available."""
-        with patch('web_pen_test_framework.ai.bedrock_client.BOTO3_AVAILABLE', False):
+        with patch('shaka_security_scanner.ai.bedrock_client.BOTO3_AVAILABLE', False):
             client = BedrockAIClient()
             assert not client.is_enabled()
             assert client.client is None
     
-    @patch('web_pen_test_framework.ai.bedrock_client.boto3')
+    @patch('shaka_security_scanner.ai.bedrock_client.boto3')
     def test_client_initialization_success(self, mock_boto3):
         """Test successful client initialization."""
         mock_session = Mock()
@@ -37,7 +37,7 @@ class TestBedrockAIClient:
         assert client.is_enabled()
         assert client.client is not None
     
-    @patch('web_pen_test_framework.ai.bedrock_client.boto3')
+    @patch('shaka_security_scanner.ai.bedrock_client.boto3')
     def test_client_initialization_credentials_error(self, mock_boto3):
         """Test client initialization with credentials error."""
         from botocore.exceptions import NoCredentialsError
@@ -58,7 +58,7 @@ class TestBedrockAIClient:
         assert 'service' in info
         assert 'capabilities' in info
     
-    @patch('web_pen_test_framework.ai.bedrock_client.boto3')
+    @patch('shaka_security_scanner.ai.bedrock_client.boto3')
     @pytest.mark.asyncio
     async def test_analyze_finding_disabled(self, mock_boto3):
         """Test analyze_finding when AI is disabled."""
@@ -77,7 +77,7 @@ class TestBedrockAIClient:
         result = await client.analyze_finding(finding)
         assert result is None
     
-    @patch('web_pen_test_framework.ai.bedrock_client.boto3')
+    @patch('shaka_security_scanner.ai.bedrock_client.boto3')
     @pytest.mark.asyncio
     async def test_analyze_finding_success(self, mock_boto3):
         """Test successful finding analysis."""

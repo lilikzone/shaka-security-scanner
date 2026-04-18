@@ -5,11 +5,11 @@ Unit tests for scanner base classes.
 import pytest
 from datetime import datetime, UTC
 
-from web_pen_test_framework.scanners.base import (
+from shaka_security_scanner.scanners.base import (
     ScannerModule, PassiveScanner, ActiveScanner,
     ScanResult, ScannerRegistry
 )
-from web_pen_test_framework.models import (
+from shaka_security_scanner.models import (
     Target, Configuration, Finding, TestSuite,
     IntensityLevel, Severity, VulnerabilityCategory
 )

@@ -6,8 +6,8 @@ import pytest
 from unittest.mock import Mock, AsyncMock, patch
 from bs4 import BeautifulSoup
 
-from web_pen_test_framework.scanners.reconnaissance import ReconnaissanceScanner
-from web_pen_test_framework.models import (
+from shaka_security_scanner.scanners.reconnaissance import ReconnaissanceScanner
+from shaka_security_scanner.models import (
     Target, Configuration, TestSuite, IntensityLevel, Severity
 )
 

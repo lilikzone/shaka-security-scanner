@@ -7,11 +7,11 @@ import tempfile
 from datetime import datetime, timedelta
 from pathlib import Path
 
-from web_pen_test_framework.core.authorization import (
+from shaka_security_scanner.core.authorization import (
     AuthorizationManager,
     ValidationResult
 )
-from web_pen_test_framework.models import AuthorizationToken, Target
+from shaka_security_scanner.models import AuthorizationToken, Target
 
 
 class TestAuthorizationManager:

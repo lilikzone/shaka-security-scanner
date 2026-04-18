@@ -6,8 +6,8 @@ import pytest
 from unittest.mock import Mock, AsyncMock
 import json
 
-from web_pen_test_framework.scanners.api import APIScanner
-from web_pen_test_framework.models import (
+from shaka_security_scanner.scanners.api import APIScanner
+from shaka_security_scanner.models import (
     Target, Configuration, TestSuite, IntensityLevel, Severity
 )
 

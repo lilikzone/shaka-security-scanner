@@ -8,7 +8,7 @@ import logging
 from pathlib import Path
 import tempfile
 import shutil
-from web_pen_test_framework.http.logger import AuditLogger, AuditLogEntry
+from shaka_security_scanner.http.logger import AuditLogger, AuditLogEntry
 
 
 class TestAuditLogEntry:
