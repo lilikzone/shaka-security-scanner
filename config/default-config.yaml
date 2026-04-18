@@ -1,0 +1,101 @@
+# Default configuration for Web Penetration Testing Framework
+
+# Target configuration
+target:
+  url: ""  # Target URL to scan
+  timeout: 30  # Request timeout in seconds
+  user_agent: "WebPenTestFramework/0.1.0"  # User agent string
+  follow_redirects: true  # Follow HTTP redirects
+  max_redirects: 10  # Maximum number of redirects to follow
+
+# Scan configuration
+scan:
+  intensity: active  # passive, active, aggressive
+  rate_limit: 10  # Requests per second
+  timeout: 300  # Total scan timeout in seconds
+  enable_destructive_tests: false  # Enable potentially destructive tests
+  enable_ai_analysis: true  # Enable AWS Bedrock AI analysis
+
+# Test suites to execute
+test_suites:
+  - reconnaissance
+  - vulnerability
+  - headers
+  - authentication
+  - input_validation
+  - ssl_tls
+  - api
+
+# Exclusion patterns (URLs matching these patterns will be skipped)
+exclusions:
+  - "/logout"
+  - "/admin/*"
+  - "/api/v1/users/*"
+  - "*.pdf"
+  - "*.jpg"
+  - "*.png"
+
+# HTTP configuration
+http:
+  proxy: null  # Proxy URL (e.g., "http://proxy.example.com:8080")
+  verify_ssl: true  # Verify SSL certificates
+  retry_attempts: 3  # Number of retry attempts on failure
+  retry_delay: 1  # Delay between retries in seconds
+
+# AWS Bedrock AI configuration
+ai:
+  enabled: true
+  provider: bedrock
+  model: anthropic.claude-v2
+  region: us-east-1
+  max_tokens: 2000
+  temperature: 0.7
+  cache_enabled: true
+  cache_ttl: 3600  # Cache TTL in seconds
+
+# Reporting configuration
+reporting:
+  formats:
+    - html
+    - json
+    - pdf
+  output_dir: "./reports"
+  include_proof_of_concept: true
+  include_remediation: true
+  include_references: true
+  severity_levels:
+    - critical
+    - high
+    - medium
+    - low
+    - info
+
+# Logging configuration
+logging:
+  level: INFO  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  file: "./logs/scan.log"
+  max_size: 10485760  # 10MB
+  backup_count: 5
+  audit_log: "./logs/audit.log"
+
+# Authorization configuration
+authorization:
+  require_token: true
+  token_validation: true
+  disclaimer_required: true
+  audit_all_attempts: true
+
+# Performance configuration
+performance:
+  max_concurrent_requests: 10
+  connection_pool_size: 100
+  keep_alive: true
+  keep_alive_timeout: 30
+
+# Security configuration
+security:
+  max_request_size: 10485760  # 10MB max request size
+  max_response_size: 52428800  # 50MB max response size
+  sanitize_inputs: true
+  validate_urls: true
+  prevent_open_redirects: true
