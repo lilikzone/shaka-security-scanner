@@ -4,7 +4,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://python.org)
 [![AWS Bedrock](https://img.shields.io/badge/AWS-Bedrock%20AI-orange.svg)](https://aws.amazon.com/bedrock/)
-[![Tests](https://img.shields.io/badge/Tests-235%20Passing-green.svg)](#testing)
+[![Tests](https://img.shields.io/badge/Tests-275%2B%20Passing-green.svg)](#testing)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 > **Shaka Security Scanner** adalah framework penetration testing web application yang komprehensif dengan integrasi AI untuk analisis keamanan yang lebih cerdas dan akurat.
@@ -14,10 +14,11 @@
 ## 🚀 Features
 
 ### 🔍 **Comprehensive Security Testing**
-- **7 Scanner Modules** - Reconnaissance, Vulnerability, Headers, SSL/TLS, Authentication, Input Validation, API
-- **18+ Vulnerability Categories** - SQL Injection, XSS, CSRF, Security Headers, dan lainnya
+- **9 Scanner Modules** - Reconnaissance, Vulnerability, Headers, SSL/TLS, Authentication, Input Validation, API, Advanced Vulnerability, CMS Vulnerability
+- **35+ Vulnerability Categories** - SQL Injection, XSS, CSRF, SSRF, XXE, Template Injection, CMS-specific vulnerabilities, dan lainnya
 - **3 Intensity Levels** - Passive, Active, Aggressive testing modes
 - **Rate Limiting & Throttling** - Mencegah DoS pada target
+- **CMS-Specific Testing** - WordPress, Drupal, Joomla, Magento vulnerability scanning
 
 ### 🤖 **AI-Powered Analysis**
 - **AWS Bedrock Integration** - Claude 3 Sonnet untuk enhanced analysis
@@ -127,6 +128,12 @@ python demo_scan.py
 # Run AI integration demo
 python ai_demo.py
 
+# Run advanced vulnerability demo
+python advanced_demo.py
+
+# Run CMS vulnerability demo
+python cms_demo.py
+
 # Run comprehensive test
 python final_test.py
 ```
@@ -144,6 +151,85 @@ python final_test.py
 | **Authentication** | Active | Authentication security | Default credentials, brute force |
 | **Input Validation** | Active | Input validation testing | Command injection, path traversal |
 | **API** | Active | API security testing | OWASP API Top 10 |
+| **Advanced Vulnerability** | Active | Advanced attack vectors | SSRF, XXE, Template Injection, NoSQL |
+| **CMS Vulnerability** | Active | CMS-specific testing | WordPress, Drupal, Joomla, Magento |
+
+---
+
+## 🎯 CMS Vulnerability Testing
+
+### Supported CMS Platforms
+
+#### **WordPress Security Testing** 🔥
+- **User Enumeration Detection**
+  - REST API user enumeration (`/wp-json/wp/v2/users`)
+  - Author parameter enumeration (`/?author=1`)
+- **XML-RPC Interface Testing**
+  - XML-RPC endpoint detection and vulnerability assessment
+  - Brute force and DDoS amplification risk evaluation
+- **Directory Listing Vulnerabilities**
+  - Plugin, theme, and upload directory exposure testing
+- **Configuration File Exposure**
+  - `wp-config.php` accessibility and backup file detection
+- **Plugin Vulnerability Detection**
+  - Known vulnerable plugins (Revolution Slider, WP File Manager, Elementor, etc.)
+- **Version Disclosure Testing**
+  - `readme.html`, `license.txt`, and meta tag version detection
+
+#### **Drupal Security Testing** 🎯
+- **Version Disclosure Detection**
+  - `CHANGELOG.txt`, `COPYRIGHT.txt`, `README.txt` analysis
+- **Admin Panel Security**
+  - `/user/login` accessibility and authentication testing
+- **Module Vulnerability Scanning**
+  - CKEditor, Views, and other module vulnerabilities
+
+#### **Joomla Security Assessment** 🌐
+- **Administrator Panel Testing**
+  - `/administrator/` accessibility and security evaluation
+- **Configuration Security**
+  - `configuration.php` exposure and backup file detection
+- **Extension Vulnerability Detection**
+  - Fabrik, JCE, and other extension vulnerabilities
+
+#### **Magento E-commerce Testing** 💰
+- **Admin Panel Discovery**
+  - Multiple admin path testing and security assessment
+- **Downloader Interface Testing**
+  - `/downloader/` accessibility and security evaluation
+- **Configuration Vulnerabilities**
+  - `app/etc/local.xml` exposure and log file accessibility
+
+### CMS Testing Example
+```python
+import asyncio
+from shaka_security_scanner import FrameworkCore
+from shaka_security_scanner.models import Target, Configuration, TestSuite, IntensityLevel
+
+async def cms_security_scan():
+    framework = FrameworkCore()
+    
+    # WordPress security audit
+    target = Target(
+        url="https://your-wordpress-site.com",
+        base_domain="your-wordpress-site.com",
+        scheme="https"
+    )
+    
+    config = Configuration(
+        test_suites=[TestSuite.CMS_VULNERABILITY],
+        intensity=IntensityLevel.ACTIVE,
+        enable_ai_analysis=True
+    )
+    
+    session = await framework.scan(target, config)
+    
+    print(f"CMS Scan completed: {len(session.get_all_findings())} findings")
+    for finding in session.get_all_findings():
+        print(f"  - {finding.title} ({finding.severity.value})")
+
+asyncio.run(cms_security_scan())
+```
 
 ---
 
@@ -227,10 +313,10 @@ python -m pytest tests/unit/test_scanners.py -v
 ```
 
 ### Test Results
-- **235 Tests** - Comprehensive test coverage
+- **275+ Tests** - Comprehensive test coverage
 - **100% Pass Rate** - All tests passing
 - **AI Integration** - 19 dedicated AI tests
-- **Scanner Modules** - 68 scanner tests
+- **Scanner Modules** - 91 scanner tests (including CMS and Advanced)
 - **Core Framework** - 148 framework tests
 
 ---
@@ -240,12 +326,16 @@ python -m pytest tests/unit/test_scanners.py -v
 ### Core Documentation
 - **[Usage Guide](USAGE_GUIDE.md)** - Comprehensive usage documentation
 - **[AI Integration](AI_INTEGRATION_SUMMARY.md)** - AI features dan setup
+- **[Advanced Vulnerability Testing](ADVANCED_UPGRADE_SUMMARY.md)** - Advanced attack vectors
+- **[CMS Vulnerability Testing](CMS_UPGRADE_SUMMARY.md)** - CMS-specific security testing
 - **[Agent Guide](AGENT.md)** - Development dan contribution guide
 - **[API Reference](docs/)** - Complete API documentation
 
 ### Examples
 - **[Demo Scripts](demo_scan.py)** - Basic usage examples
 - **[AI Demo](ai_demo.py)** - AI integration examples
+- **[Advanced Demo](advanced_demo.py)** - Advanced vulnerability testing
+- **[CMS Demo](cms_demo.py)** - CMS vulnerability testing
 - **[Advanced Examples](USAGE_GUIDE.md#examples)** - Complex scenarios
 
 ---
@@ -339,7 +429,9 @@ black src/
 ### Version History
 - **v1.0.0** - Initial release dengan 7 scanner modules
 - **v1.1.0** - AWS Bedrock AI integration
-- **v1.2.0** - Enhanced reporting dan UI improvements (planned)
+- **v1.2.0** - Advanced vulnerability testing (SSRF, XXE, Template Injection, NoSQL)
+- **v1.3.0** - CMS vulnerability testing (WordPress, Drupal, Joomla, Magento)
+- **v1.4.0** - Enhanced reporting dan UI improvements (planned)
 
 ---
 
