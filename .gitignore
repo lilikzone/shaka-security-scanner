@@ -197,3 +197,9 @@ Thumbs.db
 findings/
 vulnerability-reports/
 scan-sessions/
+
+# Frontend dependencies and build artifacts
+frontend/node_modules/
+frontend/.next/
+frontend/dist/
+frontend/build/

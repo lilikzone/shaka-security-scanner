@@ -52,6 +52,13 @@ class VulnerabilityCategory(str, Enum):
     SESSION_MANAGEMENT = "session_management"
     API_SECURITY = "api_security"
     INFORMATION_DISCLOSURE = "information_disclosure"
+    # Advanced vulnerability categories
+    INJECTION = "injection"  # Generic injection category
+    SSRF = "ssrf"  # Server-Side Request Forgery
+    XXE = "xxe"  # XML External Entity
+    NOSQL_INJECTION = "nosql_injection"
+    TEMPLATE_INJECTION = "template_injection"
+    LDAP_INJECTION = "ldap_injection"
     OTHER = "other"
 
 
@@ -66,6 +73,7 @@ class TestSuite(str, Enum):
     """Available test suites."""
     RECONNAISSANCE = "reconnaissance"
     VULNERABILITY = "vulnerability"
+    ADVANCED_VULNERABILITY = "advanced_vulnerability"  # New advanced test suite
     HEADERS = "headers"
     AUTHENTICATION = "authentication"
     INPUT_VALIDATION = "input_validation"

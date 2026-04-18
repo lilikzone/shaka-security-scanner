@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 222 44% 6%;
+  --foreground: 210 40% 98%;
+  --panel: 221 35% 10%;
+  --panel-alt: 220 28% 14%;
+  --border: 217 22% 25%;
+  --accent: 188 96% 43%;
+  --accent-foreground: 205 100% 8%;
+  --success: 142 76% 36%;
+  --warning: 45 92% 47%;
+  --danger: 0 84% 60%;
+  --info: 217 91% 60%;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  @apply bg-background text-foreground antialiased;
+  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+  background-image:
+    radial-gradient(circle at 10% 10%, rgba(3, 105, 161, 0.2), transparent 30%),
+    radial-gradient(circle at 90% 0%, rgba(20, 184, 166, 0.14), transparent 28%),
+    linear-gradient(120deg, rgba(15, 23, 42, 0.9), rgba(2, 6, 23, 0.95));
+}
+
+.terminal-font {
+  font-family: "IBM Plex Mono", "Menlo", monospace;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(51, 65, 85, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(51, 65, 85, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+}

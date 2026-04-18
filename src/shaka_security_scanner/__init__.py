@@ -30,7 +30,7 @@ from .models import (
 
 # Scanner modules
 from .scanners import (
-    ReconnaissanceScanner, VulnerabilityScanner, HeadersScanner,
+    ReconnaissanceScanner, VulnerabilityScanner, AdvancedVulnerabilityScanner, HeadersScanner,
     SSLTLSScanner, AuthenticationScanner, InputValidationScanner,
     APIScanner
 )
@@ -75,6 +75,7 @@ __all__ = [
     # Scanners
     "ReconnaissanceScanner",
     "VulnerabilityScanner",
+    "AdvancedVulnerabilityScanner",
     "HeadersScanner", 
     "SSLTLSScanner",
     "AuthenticationScanner",
