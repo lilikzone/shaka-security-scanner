@@ -352,11 +352,22 @@ echo "   URL: http://localhost:$PORT"
 echo "   Health: http://localhost:$PORT/health"
 echo "   Scanners: http://localhost:$PORT/api/v1/scanners"
 echo "   AWS Profile: $AWS_PROFILE"
+echo "   AWS Region: $AWS_DEFAULT_REGION"
+echo "   Bedrock Model: $BEDROCK_MODEL_ID"
+echo "   AI Enabled: $ENABLE_AI"
 echo "   Log Level: $LOG_LEVEL"
 echo ""
 echo "📝 Logs: tail -f backend-logs/app.log"
 echo ""
 echo "🛑 Press Ctrl+C to stop"
 echo ""
+
+# Export environment variables explicitly for Python
+export AWS_PROFILE
+export AWS_DEFAULT_REGION
+export BEDROCK_MODEL_ID
+export ENABLE_AI
+export LOG_LEVEL
+export PORT
 
 python3 backend-server.py

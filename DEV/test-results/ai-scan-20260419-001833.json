@@ -1,0 +1,122 @@
+{
+    "id": "scan-20260419001832",
+    "status": "completed",
+    "progress": 1.0,
+    "start_time": "2026-04-19T00:18:32.535026",
+    "end_time": "2026-04-19T00:18:32.667836",
+    "findings_count": 14,
+    "findings": [
+        {
+            "id": "headers-1776532037.512479",
+            "title": "Missing Security Header: Strict-Transport-Security",
+            "severity": "high",
+            "category": "security_headers",
+            "affected_url": "http://example.com",
+            "description": "Enforces HTTPS connections. This header is not present in the response."
+        },
+        {
+            "id": "headers-1776532037.512595",
+            "title": "Missing Security Header: Content-Security-Policy",
+            "severity": "high",
+            "category": "security_headers",
+            "affected_url": "http://example.com",
+            "description": "Prevents XSS and data injection attacks. This header is not present in the response."
+        },
+        {
+            "id": "headers-1776532037.512687",
+            "title": "Missing Security Header: X-Frame-Options",
+            "severity": "medium",
+            "category": "security_headers",
+            "affected_url": "http://example.com",
+            "description": "Prevents clickjacking attacks. This header is not present in the response."
+        },
+        {
+            "id": "headers-1776532037.512773",
+            "title": "Missing Security Header: X-Content-Type-Options",
+            "severity": "medium",
+            "category": "security_headers",
+            "affected_url": "http://example.com",
+            "description": "Prevents MIME type sniffing. This header is not present in the response."
+        },
+        {
+            "id": "headers-1776532037.51286",
+            "title": "Missing Security Header: Referrer-Policy",
+            "severity": "low",
+            "category": "security_headers",
+            "affected_url": "http://example.com",
+            "description": "Controls referrer information. This header is not present in the response."
+        },
+        {
+            "id": "headers-1776532037.512954",
+            "title": "Missing Security Header: Permissions-Policy",
+            "severity": "low",
+            "category": "security_headers",
+            "affected_url": "http://example.com",
+            "description": "Controls browser features and APIs. This header is not present in the response."
+        },
+        {
+            "id": "headers-1776532037.513045",
+            "title": "Information Disclosure: Server",
+            "severity": "low",
+            "category": "information_disclosure",
+            "affected_url": "http://example.com",
+            "description": "Discloses server information. Value: cloudflare"
+        },
+        {
+            "id": "headers-1776532712.660986",
+            "title": "Missing Security Header: Strict-Transport-Security",
+            "severity": "high",
+            "category": "security_headers",
+            "affected_url": "http://example.com",
+            "description": "Enforces HTTPS connections. This header is not present in the response."
+        },
+        {
+            "id": "headers-1776532712.661104",
+            "title": "Missing Security Header: Content-Security-Policy",
+            "severity": "high",
+            "category": "security_headers",
+            "affected_url": "http://example.com",
+            "description": "Prevents XSS and data injection attacks. This header is not present in the response."
+        },
+        {
+            "id": "headers-1776532712.661197",
+            "title": "Missing Security Header: X-Frame-Options",
+            "severity": "medium",
+            "category": "security_headers",
+            "affected_url": "http://example.com",
+            "description": "Prevents clickjacking attacks. This header is not present in the response."
+        },
+        {
+            "id": "headers-1776532712.661286",
+            "title": "Missing Security Header: X-Content-Type-Options",
+            "severity": "medium",
+            "category": "security_headers",
+            "affected_url": "http://example.com",
+            "description": "Prevents MIME type sniffing. This header is not present in the response."
+        },
+        {
+            "id": "headers-1776532712.661371",
+            "title": "Missing Security Header: Referrer-Policy",
+            "severity": "low",
+            "category": "security_headers",
+            "affected_url": "http://example.com",
+            "description": "Controls referrer information. This header is not present in the response."
+        },
+        {
+            "id": "headers-1776532712.661457",
+            "title": "Missing Security Header: Permissions-Policy",
+            "severity": "low",
+            "category": "security_headers",
+            "affected_url": "http://example.com",
+            "description": "Controls browser features and APIs. This header is not present in the response."
+        },
+        {
+            "id": "headers-1776532712.661549",
+            "title": "Information Disclosure: Server",
+            "severity": "low",
+            "category": "information_disclosure",
+            "affected_url": "http://example.com",
+            "description": "Discloses server information. Value: cloudflare"
+        }
+    ]
+}

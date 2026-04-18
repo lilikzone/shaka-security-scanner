@@ -52,10 +52,11 @@ class BedrockAIClient:
     def __init__(
         self,
         region_name: str = "us-east-1",
-        model_id: str = "anthropic.claude-3-sonnet-20240229-v1:0",
+        model_id: str = "us.anthropic.claude-haiku-4-5-20251001-v1:0",
         aws_access_key_id: Optional[str] = None,
         aws_secret_access_key: Optional[str] = None,
-        aws_session_token: Optional[str] = None
+        aws_session_token: Optional[str] = None,
+        profile_name: Optional[str] = None
     ):
         """
         Initialize Bedrock AI client.
@@ -66,6 +67,7 @@ class BedrockAIClient:
             aws_access_key_id: AWS access key (optional, uses default credentials)
             aws_secret_access_key: AWS secret key (optional)
             aws_session_token: AWS session token (optional)
+            profile_name: AWS profile name (optional, uses default if not specified)
         """
         self.region_name = region_name
         self.model_id = model_id
@@ -82,6 +84,8 @@ class BedrockAIClient:
         try:
             # Initialize Bedrock client
             session_kwargs = {}
+            if profile_name:
+                session_kwargs['profile_name'] = profile_name
             if aws_access_key_id:
                 session_kwargs['aws_access_key_id'] = aws_access_key_id
             if aws_secret_access_key:
@@ -98,7 +102,7 @@ class BedrockAIClient:
             # Test connection
             self._test_connection()
             self.enabled = True
-            logger.info(f"AWS Bedrock AI client initialized successfully (region: {region_name})")
+            logger.info(f"AWS Bedrock AI client initialized successfully (region: {region_name}, profile: {profile_name or 'default'})")
             
         except NoCredentialsError:
             logger.warning(

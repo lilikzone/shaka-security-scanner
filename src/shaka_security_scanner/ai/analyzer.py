@@ -59,7 +59,10 @@ class SecurityAnalysisEngine:
     def __init__(
         self,
         bedrock_client: Optional[BedrockAIClient] = None,
-        enable_ai: bool = True
+        enable_ai: bool = True,
+        aws_profile: Optional[str] = None,
+        aws_region: Optional[str] = None,
+        model_id: Optional[str] = None
     ):
         """
         Initialize analysis engine.
@@ -67,12 +70,25 @@ class SecurityAnalysisEngine:
         Args:
             bedrock_client: AWS Bedrock client (creates default if None)
             enable_ai: Whether to enable AI analysis
+            aws_profile: AWS profile name (optional)
+            aws_region: AWS region (optional)
+            model_id: Bedrock model ID (optional)
         """
         self.enable_ai = enable_ai
         self.bedrock_client = bedrock_client
         
         if self.enable_ai and not self.bedrock_client:
-            self.bedrock_client = BedrockAIClient()
+            # Get configuration from environment or parameters
+            import os
+            profile = aws_profile or os.getenv('AWS_PROFILE')
+            region = aws_region or os.getenv('AWS_DEFAULT_REGION', 'us-east-1')
+            model = model_id or os.getenv('BEDROCK_MODEL_ID', 'us.anthropic.claude-haiku-4-5-20251001-v1:0')
+            
+            self.bedrock_client = BedrockAIClient(
+                region_name=region,
+                model_id=model,
+                profile_name=profile
+            )
         
         self.analysis_cache: Dict[str, AIAnalysisResult] = {}
         
@@ -146,7 +162,10 @@ class SecurityAnalysisEngine:
         
         enhanced = EnhancedFinding(original_finding=finding)
         
-        if not self.is_ai_enabled():
+        ai_enabled = self.is_ai_enabled()
+        logger.debug(f"Analyzing finding: {finding.title}, AI enabled: {ai_enabled}, enable_ai: {self.enable_ai}, bedrock_client: {self.bedrock_client is not None}, bedrock_enabled: {self.bedrock_client.is_enabled() if self.bedrock_client else False}")
+        
+        if not ai_enabled:
             logger.debug(f"AI disabled, skipping analysis for finding: {finding.title}")
             return enhanced
         

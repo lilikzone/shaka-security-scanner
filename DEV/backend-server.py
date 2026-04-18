@@ -11,6 +11,21 @@ from datetime import datetime
 from typing import Dict, Any, List
 import json
 
+# Set environment variables from .env.backend if not already set
+if not os.getenv('AWS_PROFILE'):
+    env_file = '.env.backend'
+    if os.path.exists(env_file):
+        with open(env_file) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    key, value = line.split('=', 1)
+                    os.environ[key] = value
+        print(f"✓ Loaded environment from {env_file}")
+        print(f"  AWS_PROFILE: {os.getenv('AWS_PROFILE')}")
+        print(f"  AWS_DEFAULT_REGION: {os.getenv('AWS_DEFAULT_REGION')}")
+        print(f"  BEDROCK_MODEL_ID: {os.getenv('BEDROCK_MODEL_ID')}")
+
 # Add parent directory to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
@@ -182,6 +197,7 @@ async def run_scan(scan_id: str, target: Target, config: Configuration):
     """Run scan in background"""
     try:
         logger.info(f"Starting scan {scan_id}")
+        logger.info(f"AI Analysis enabled in config: {config.enable_ai_analysis}")
         active_scans[scan_id]["status"] = ScanStatus.RUNNING
         
         # Run the actual scan
