@@ -104,7 +104,7 @@ class FrameworkCore:
     def _register_default_scanners(self) -> None:
         """Register all default scanner modules."""
         from ..scanners import (
-            ReconnaissanceScanner, VulnerabilityScanner, AdvancedVulnerabilityScanner, HeadersScanner,
+            ReconnaissanceScanner, VulnerabilityScanner, AdvancedVulnerabilityScanner, CMSVulnerabilityScanner, HeadersScanner,
             SSLTLSScanner, AuthenticationScanner, InputValidationScanner,
             APIScanner
         )
@@ -114,6 +114,7 @@ class FrameworkCore:
             ReconnaissanceScanner(),
             VulnerabilityScanner(),
             AdvancedVulnerabilityScanner(self.http_client),
+            CMSVulnerabilityScanner(self.http_client),
             HeadersScanner(),
             SSLTLSScanner(),
             AuthenticationScanner(),

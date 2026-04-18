@@ -12,6 +12,7 @@ from .base import (
 from .reconnaissance import ReconnaissanceScanner
 from .vulnerability import VulnerabilityScanner
 from .advanced_vulnerability import AdvancedVulnerabilityScanner
+from .cms_vulnerability import CMSVulnerabilityScanner
 from .headers import HeadersScanner
 from .ssl_tls import SSLTLSScanner
 from .authentication import AuthenticationScanner
@@ -27,6 +28,7 @@ __all__ = [
     'ReconnaissanceScanner',
     'VulnerabilityScanner',
     'AdvancedVulnerabilityScanner',
+    'CMSVulnerabilityScanner',
     'HeadersScanner',
     'SSLTLSScanner',
     'AuthenticationScanner',

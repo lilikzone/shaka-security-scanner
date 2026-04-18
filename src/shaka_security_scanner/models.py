@@ -73,7 +73,8 @@ class TestSuite(str, Enum):
     """Available test suites."""
     RECONNAISSANCE = "reconnaissance"
     VULNERABILITY = "vulnerability"
-    ADVANCED_VULNERABILITY = "advanced_vulnerability"  # New advanced test suite
+    ADVANCED_VULNERABILITY = "advanced_vulnerability"  # Advanced vulnerability test suite
+    CMS_VULNERABILITY = "cms_vulnerability"  # CMS-specific vulnerability test suite
     HEADERS = "headers"
     AUTHENTICATION = "authentication"
     INPUT_VALIDATION = "input_validation"
