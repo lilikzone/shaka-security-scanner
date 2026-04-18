@@ -1,0 +1,21 @@
+# Test Configuration for DEV Environment
+
+target:
+  url: "http://testphp.vulnweb.com"
+  base_domain: "testphp.vulnweb.com"
+  scheme: "http"
+
+configuration:
+  test_suites:
+    - reconnaissance
+    - vulnerability
+  intensity: passive
+  rate_limit: 5
+  timeout: 30
+  enable_ai_analysis: true
+  enable_destructive_tests: false
+
+aws:
+  profile: sandbox
+  region: us-east-1
+  model_id: anthropic.claude-3-sonnet-20240229-v1:0
